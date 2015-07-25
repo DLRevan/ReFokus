@@ -53,7 +53,7 @@ public class Summary extends Activity {
         setContentView(R.layout.activity_summary);
         populate_info();
 
-        smartwatchButton = (Button)findViewById(R.id.main_login);
+        smartwatchButton = (Button)findViewById(R.id.smartwatch);
         smartwatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
