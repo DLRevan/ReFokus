@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import teamvulcan.refokus.Main;
 import teamvulcan.refokus.R;
+import teamvulcan.refokus.authenticator.LoginActivity;
 import teamvulcan.refokus.helpers.User;
 import teamvulcan.refokus.preferences.SettingsActivity;
+import teamvulcan.refokus.smartwatch.Smartwatch;
 
 /**
  * Created by kcheng.2013 on 25/7/2015.
@@ -23,6 +28,7 @@ public class Summary extends Activity {
     private TextView gender;
     private TextView age;
     private TextView cur_study;
+    private Button smartwatchButton;
 
     @Override
     protected void onRestart() {
@@ -46,6 +52,14 @@ public class Summary extends Activity {
 
         setContentView(R.layout.activity_summary);
         populate_info();
+
+        smartwatchButton = (Button)findViewById(R.id.main_login);
+        smartwatchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplication(), Smartwatch.class));
+            }
+        });
 
     }
 

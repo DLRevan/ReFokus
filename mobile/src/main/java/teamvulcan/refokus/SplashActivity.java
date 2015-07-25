@@ -14,7 +14,7 @@ import android.view.Window;
 public class SplashActivity extends Activity {
 
     // Set Duration of the Splash Screen
-    long Delay = 4000;
+    long Delay = 3500;
 
     /** Called when the activity is first created. */
     @Override
