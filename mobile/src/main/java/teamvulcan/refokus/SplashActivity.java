@@ -1,42 +1,64 @@
 package teamvulcan.refokus;
 
-import android.app.Activity;
-import android.graphics.PixelFormat;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 /**
  * Created by kcheng.2013 on 24/7/2015.
  */
 public class SplashActivity extends Activity {
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Window window = getWindow();
-        window.setFormat(PixelFormat.RGBA_8888);
-    }
+
+    // Set Duration of the Splash Screen
+    long Delay = 4000;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
-        StartAnimations();
+
+        // Remove the Title Bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // Get the view from splash_screen.xml
+        setContentView(R.layout.activity_splash_screen);
+
+        // Create a Timer
+        Timer RunSplash = new Timer();
+
+        // Task to do when the timer ends
+        TimerTask ShowSplash = new TimerTask() {
+            @Override
+            public void run() {
+                // Close SplashScreenActivity.class
+                finish();
+
+                // Start MainActivity.class
+                Intent myIntent = new Intent(SplashActivity.this,
+                        Main.class);
+                startActivity(myIntent);
+            }
+        };
+
+        // Start the timer
+        RunSplash.schedule(ShowSplash, Delay);
     }
 
-    private void StartAnimations() {
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        anim.reset();
-        LinearLayout l=(LinearLayout) findViewById(R.id.lin_lay);
-        l.clearAnimation();
-        l.startAnimation(anim);
-
-        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
-        anim.reset();
-        ImageView iv = (ImageView) findViewById(R.id.logo);
-        iv.clearAnimation();
-        iv.startAnimation(anim);
-    }
+//    private void StartAnimations() {
+//        Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
+//        anim.reset();
+//        LinearLayout l=(LinearLayout) findViewById(R.id.lin_lay);
+//        l.clearAnimation();
+//        l.startAnimation(anim);
+//
+//        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
+//        anim.reset();
+//        ImageView iv = (ImageView) findViewById(R.id.logo);
+//        iv.clearAnimation();
+//        iv.startAnimation(anim);
+//    }
 }

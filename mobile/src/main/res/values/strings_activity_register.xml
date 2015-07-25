@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_register">Register</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_age">Age (Please enter a number)</string>
+    <string name="prompt_radio_male">Male</string>
+    <string name="prompt_radio_female">Female</string>
+</resources>
