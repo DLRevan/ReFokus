@@ -7,5 +7,8 @@
     <string name="title_activity_register">Register</string>
     <string name="hello_blank_fragment">user logged in </string>
     <string name="title_activity_summary">Summary</string>
+    <string name="title_activity_podcast">Podcast</string>
+    <string name="title_activity_view_graph">View Graph</string>
+    <string name="podcast">Play Podcast</string>
 
 </resources>

@@ -3,6 +3,8 @@ package teamvulcan.refokus.smartwatch;
 import android.app.Activity;
 import android.app.Notification;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.support.v4.app.NotificationCompat;
@@ -16,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import teamvulcan.refokus.R;
+import teamvulcan.refokus.user.Summary;
+import teamvulcan.refokus.podcast.Podcast;
 
 /**
  * Created by kcheng.2013 on 25/7/2015.
@@ -25,16 +29,38 @@ public class Smartwatch extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smartwatch);
 
+        final Resources res = getResources();
+
+        Button viewGraphButton = (Button)findViewById(R.id.viewGraph);
+        viewGraphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplication(), ViewGraphActivity.class));
+            }
+        });
+
         Button mButton = (Button) findViewById(R.id.sendNotification);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent summaryIntent = new Intent(getBaseContext(), Summary.class);
+                PendingIntent summaryPendingIntent =
+                        PendingIntent.getActivity(getBaseContext(), 0, summaryIntent, 0);
+
+                Intent podcastIntent = new Intent(getBaseContext(), Podcast.class);
+                PendingIntent podcastPendingIntent =
+                        PendingIntent.getActivity(getBaseContext(), 0, podcastIntent, 0);
+
                 Notification notification = new NotificationCompat.Builder(getApplication())
                         .setSmallIcon(R.drawable.ic_launcher)
+                        .setPriority(1)
                         .setContentTitle("ReFokus")
                         .setContentText("Time to meditate!")
-                        .extend(new NotificationCompat.WearableExtender().setHintShowBackgroundOnly(true))
-//                        .extend(new WearableExtender().addAction(action))
+                        .extend(new NotificationCompat.WearableExtender().setBackground(BitmapFactory.decodeResource(res,
+                                R.drawable.scenary)))
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setContentIntent(summaryPendingIntent)
+                        .addAction(R.drawable.podcast, getString(R.string.podcast), podcastPendingIntent)
                         .build();
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());

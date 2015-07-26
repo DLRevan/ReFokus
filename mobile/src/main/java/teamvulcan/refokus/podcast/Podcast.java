@@ -1,4 +1,4 @@
-package teamvulcan.refokus.smartwatch;
+package teamvulcan.refokus.podcast;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import teamvulcan.refokus.R;
 /**
  * Created by kcheng.2013 on 26/7/2015.
  */
-public class ViewGraphActivity extends Activity {
+public class Podcast extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_graph);
+        setContentView(R.layout.activity_podcast);
     }
 
     @Override

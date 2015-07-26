@@ -18,6 +18,7 @@ import teamvulcan.refokus.authenticator.LoginActivity;
 import teamvulcan.refokus.helpers.User;
 import teamvulcan.refokus.preferences.SettingsActivity;
 import teamvulcan.refokus.smartwatch.Smartwatch;
+import teamvulcan.refokus.podcast.Podcast;
 
 /**
  * Created by kcheng.2013 on 25/7/2015.
@@ -29,6 +30,7 @@ public class Summary extends Activity {
     private TextView age;
     private TextView cur_study;
     private Button smartwatchButton;
+    private Button podcastButton;
 
     @Override
     protected void onRestart() {
@@ -58,6 +60,14 @@ public class Summary extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplication(), Smartwatch.class));
+            }
+        });
+
+        podcastButton = (Button)findViewById(R.id.podcast);
+        podcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplication(), Podcast.class));
             }
         });
 
